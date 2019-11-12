@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package tela.manutencao;
-import tela.listagem.ListagemPessoa;
+import tela.listagem.ListagemTouro;
 /**
  *
  * @author Avell
  */
 public class ManutencaoTouro extends javax.swing.JDialog {
-public ListagemPessoa listagem;
+public ListagemTouro listagem;
     /**
      * Creates new form ManutencaoRaca
      */
@@ -19,7 +19,7 @@ public ListagemPessoa listagem;
         initComponents();
     }
  //Entrando na Manutenção de Produto para Adicionar um novo Produto (OBS: o nome do método deverá ser o mesmo nome da classe)
- public ManutencaoTouro(java.awt.Frame parent, boolean modal, ListagemPessoa listagem) {
+ public ManutencaoTouro(java.awt.Frame parent, boolean modal, ListagemTouro listagem) {
         super(parent, modal);
         initComponents();
         this.listagem = listagem;
@@ -28,13 +28,13 @@ public ListagemPessoa listagem;
         btnAlterar.setEnabled(false); //desabilitando o botão alterar
         btnExcluir.setEnabled(false); //desabilitando o botão excluir
   }
-   public ManutencaoTouro(java.awt.Frame parent, boolean modal, ListagemPessoa listagem, int pk) {
+   public ManutencaoTouro(java.awt.Frame parent, boolean modal, ListagemTouro listagem, int pk) {
         super(parent, modal);
         initComponents();
         
         jtfCodigo.setEnabled(false);  //desabilitando a edição do campo código
         this.listagem = listagem;
-        controlador.ControladorPessoa.atualizaCampos(this, pk);//pegando os valores do BD e colocando na tela
+        controlador.ControladorTouro.atualizaCampos(this, pk);//pegando os valores do BD e colocando na tela
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -164,7 +164,7 @@ public ListagemPessoa listagem;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-controlador.ControladorPessoa.excluir(this);        // TODO add your handling code here:
+controlador.ControladorTouro.excluir(this);        // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -172,7 +172,7 @@ dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-controlador.ControladorPessoa.inserir(this);        // TODO add your handling code here:
+controlador.ControladorTouro.inserir(this);        // TODO add your handling code here:
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
@@ -180,7 +180,7 @@ controlador.ControladorPessoa.inserir(this);        // TODO add your handling co
     }//GEN-LAST:event_jtfNomeActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-controlador.ControladorPessoa.alterar(this);         // TODO add your handling code here:
+controlador.ControladorTouro.alterar(this);         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
@@ -237,7 +237,7 @@ controlador.ControladorPessoa.alterar(this);         // TODO add your handling c
     public javax.swing.JButton btnAlterar;
     public javax.swing.JButton btnExcluir;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> comRaca;
+    public javax.swing.JComboBox<String> comRaca;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -4,11 +4,10 @@
  * and open the template in the editor.
  */
 package dao;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import modelo.Producao;
+import modelo.Touro;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,17 +15,13 @@ import java.util.List;
  *
  * @author Avell
  */
-public class DaoProducao {
-     public static boolean inserir(Producao objeto) {
-        String sql = "INSERT INTO Producao_leite (turno, data, total, obs, cod_pessoa, cod_vaca) VALUES (?, ?, ?, ?, ?, ?)";
+public class DaoTouro {
+     public static boolean inserir(Touro objeto) {
+        String sql = "INSERT INTO Touro (nome, cod_raca) VALUES (?, ?)";
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
-            ps.setInt(1, objeto.getTurno());
-            ps.setDate(2, Date.valueOf(objeto.getData()));
-            ps.setInt(3, objeto.getTotal());
-            ps.setString(4, objeto.getObservacao());
-            ps.setInt(5, objeto.getPessoaVaca());
-            ps.setInt(6, objeto.getVacaProducao());
+            ps.setString(1, objeto.getNome());
+            ps.setInt(2, objeto.getRaca());
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -34,17 +29,13 @@ public class DaoProducao {
             return false;
         }
     }
-       public static boolean alterar(Producao objeto) {
-        String sql = "UPDATE Producao_leite SET turno = ?, data = ?, total = ?, obs = ?, cod_pessoa = ?, cod_vaca = ? WHERE codigo=?";
+       public static boolean alterar(Touro objeto) {
+        String sql = "UPDATE Touro SET nome = ?, cod_raca = ? WHERE codigo=?";
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
-            ps.setInt(1, objeto.getTurno());
-            ps.setDate(2, Date.valueOf(objeto.getData()));
-            ps.setInt(3, objeto.getTotal());
-            ps.setString(4, objeto.getObservacao());
-            ps.setInt(5, objeto.getPessoaVaca());
-            ps.setInt(6, objeto.getVacaProducao());
-            ps.setInt(7, objeto.getCodigo());
+            ps.setString(1, objeto.getNome()); 
+            ps.setInt(2, objeto.getRaca());
+            ps.setInt(3, objeto.getCodigo());
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -52,8 +43,8 @@ public class DaoProducao {
             return false;
         }
     }
-         public static boolean excluir(Producao objeto) {
-        String sql = "DELETE FROM Producao_leite WHERE codigo=?";
+         public static boolean excluir(Touro objeto) {
+        String sql = "DELETE FROM Touro WHERE codigo=?";
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setInt(1, objeto.getCodigo());
@@ -65,24 +56,20 @@ public class DaoProducao {
         }
     }
          
-    public static List<Producao> consultar() {
-        List<Producao> resultados = new ArrayList<>();
+    public static List<Touro> consultar() {
+        List<Touro> resultados = new ArrayList<>();
         //editar o SQL conforme a entidade
-        String sql = "SELECT codigo, turno, data, total, obs, cod_pessoa, cod_vaca FROM Producao_leite";
+        String sql = "SELECT codigo, nome, cod_raca FROM Touro";
         PreparedStatement ps;
         try {
             ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Producao objeto = new Producao();
+                Touro objeto = new Touro();
                 //definir um set para cada atributo da entidade, cuidado com o tipo
                 objeto.setCodigo(rs.getInt("codigo"));
-                objeto.setTurno(rs.getInt("turno"));
-                objeto.setData(rs.getDate("data").toLocalDate());
-                objeto.setTotal(rs.getInt("total"));
-                objeto.setObservacao(rs.getString("obs"));
-                objeto.setPessoaVaca(rs.getInt("cod_pessoa"));
-                objeto.setVacaProducao(rs.getInt("cod_vaca"));
+                objeto.setNome(rs.getString("nome"));
+                objeto.setRaca(rs.getInt("cod_raca"));
                 
                 resultados.add(objeto);//não mexa nesse, ele adiciona o objeto na lista
             }
@@ -93,24 +80,20 @@ public class DaoProducao {
         }
 }
     
-   public static Producao consultar(int primaryKey) {
+   public static Touro consultar(int primaryKey) {
         //editar o SQL conforme a entidade
-        String sql = "SELECT codigo, turno, data, total, obs, cod_pessoa, cod_vaca FROM Producao_leite WHERE codigo=?";
+        String sql = "SELECT codigo, nome, cod_raca FROM Touro WHERE codigo=?";
         PreparedStatement ps;
         try {
             ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setInt(1, primaryKey);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Producao objeto = new Producao();
+                Touro objeto = new Touro();
                 //definir um set para cada atributo da entidade, cuidado com o tipo
                 objeto.setCodigo(rs.getInt("codigo"));
-                objeto.setTurno(rs.getInt("turno"));
-                objeto.setData(rs.getDate("data").toLocalDate());
-                objeto.setTotal(rs.getInt("total"));
-                objeto.setObservacao(rs.getString("obs"));
-                objeto.setPessoaVaca(rs.getInt("cod_pessoa"));
-                objeto.setVacaProducao(rs.getInt("cod_vaca"));
+                objeto.setNome(rs.getString("nome"));
+                objeto.setRaca(rs.getInt("cod_raca"));
                 return objeto;//não mexa nesse, ele adiciona o objeto na lista
             }
         } catch (SQLException | ClassNotFoundException ex) {

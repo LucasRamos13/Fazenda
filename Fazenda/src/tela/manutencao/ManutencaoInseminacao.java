@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package tela.manutencao;
-import tela.listagem.ListagemPessoa;
+import tela.listagem.ListagemInseminacao;
 /**
  *
  * @author Avell
  */
 public class ManutencaoInseminacao extends javax.swing.JDialog {
-public ListagemPessoa listagem;
+public ListagemInseminacao listagem;
     /**
      * Creates new form ManutencaoRaca
      */
@@ -19,22 +19,24 @@ public ListagemPessoa listagem;
         initComponents();
     }
  //Entrando na Manutenção de Produto para Adicionar um novo Produto (OBS: o nome do método deverá ser o mesmo nome da classe)
- public ManutencaoInseminacao(java.awt.Frame parent, boolean modal, ListagemPessoa listagem) {
+ public ManutencaoInseminacao(java.awt.Frame parent, boolean modal, ListagemInseminacao listagem) {
         super(parent, modal);
         initComponents();
         this.listagem = listagem;
         
-        jtfCodigo.setEnabled(false);  //desabilitando a edição do campo código
+        jtfCodigo.setEnabled(false); //desabilitando a edição do campo código
+        jtfPrevisao.setEnabled(false);
         btnAlterar.setEnabled(false); //desabilitando o botão alterar
         btnExcluir.setEnabled(false); //desabilitando o botão excluir
   }
-   public ManutencaoInseminacao(java.awt.Frame parent, boolean modal, ListagemPessoa listagem, int pk) {
+   public ManutencaoInseminacao(java.awt.Frame parent, boolean modal, ListagemInseminacao listagem, int pk) {
         super(parent, modal);
         initComponents();
         
-        jtfCodigo.setEnabled(false);  //desabilitando a edição do campo código
+        jtfCodigo.setEnabled(false);
+        jtfPrevisao.setEnabled(false);//desabilitando a edição do campo código
         this.listagem = listagem;
-        controlador.ControladorPessoa.atualizaCampos(this, pk);//pegando os valores do BD e colocando na tela
+        controlador.ControladorInseminacao.atualizaCampos(this, pk);//pegando os valores do BD e colocando na tela
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,17 +56,17 @@ public ListagemPessoa listagem;
         btnExcluir = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jtfCodigo = new javax.swing.JTextField();
-        jtfNome = new javax.swing.JTextField();
-        jtfEmail = new javax.swing.JTextField();
-        jtfUsuario = new javax.swing.JTextField();
+        jtfData = new javax.swing.JTextField();
+        jtfPrevisao = new javax.swing.JTextField();
+        jtfObservacao = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comSituacao = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comVaca = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        comTouro = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -103,9 +105,9 @@ public ListagemPessoa listagem;
             }
         });
 
-        jtfNome.addActionListener(new java.awt.event.ActionListener() {
+        jtfData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfNomeActionPerformed(evt);
+                jtfDataActionPerformed(evt);
             }
         });
 
@@ -115,15 +117,15 @@ public ListagemPessoa listagem;
 
         jLabel7.setText("Situação:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3" }));
+        comSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3" }));
 
         jLabel6.setText("Vaca:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comVaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel8.setText("Touro:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comTouro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,11 +145,11 @@ public ListagemPessoa listagem;
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                                    .addComponent(jtfData, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                                     .addComponent(jtfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                                    .addComponent(jtfUsuario)
-                                    .addComponent(jtfEmail)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jtfObservacao)
+                                    .addComponent(jtfPrevisao)
+                                    .addComponent(comSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnAdicionar)
                                 .addGap(18, 18, 18)
@@ -155,11 +157,11 @@ public ListagemPessoa listagem;
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(comVaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(30, 30, 30)
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(comTouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnAlterar)
                                         .addGap(18, 18, 18)
@@ -182,24 +184,24 @@ public ListagemPessoa listagem;
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comVaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comTouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdicionar)
@@ -213,7 +215,7 @@ public ListagemPessoa listagem;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-controlador.ControladorPessoa.excluir(this);        // TODO add your handling code here:
+controlador.ControladorInseminacao.excluir(this);        // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -221,15 +223,15 @@ dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-controlador.ControladorPessoa.inserir(this);        // TODO add your handling code here:
+controlador.ControladorInseminacao.inserir(this);        // TODO add your handling code here:
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
-    private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
+    private void jtfDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDataActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNomeActionPerformed
+    }//GEN-LAST:event_jtfDataActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-controlador.ControladorPessoa.alterar(this);         // TODO add your handling code here:
+controlador.ControladorInseminacao.alterar(this);         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
@@ -286,10 +288,10 @@ controlador.ControladorPessoa.alterar(this);         // TODO add your handling c
     public javax.swing.JButton btnAlterar;
     public javax.swing.JButton btnExcluir;
     private javax.swing.ButtonGroup buttonGroup1;
+    public javax.swing.JComboBox<String> comSituacao;
+    public javax.swing.JComboBox<String> comTouro;
+    public javax.swing.JComboBox<String> comVaca;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -299,8 +301,8 @@ controlador.ControladorPessoa.alterar(this);         // TODO add your handling c
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     public javax.swing.JTextField jtfCodigo;
-    public javax.swing.JTextField jtfEmail;
-    public javax.swing.JTextField jtfNome;
-    public javax.swing.JTextField jtfUsuario;
+    public javax.swing.JTextField jtfData;
+    public javax.swing.JTextField jtfObservacao;
+    public javax.swing.JTextField jtfPrevisao;
     // End of variables declaration//GEN-END:variables
 }

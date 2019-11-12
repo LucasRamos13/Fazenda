@@ -52,9 +52,9 @@ public ListagemPessoa listagem;
         jLabel1 = new javax.swing.JLabel();
         jtfCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jtfNome = new javax.swing.JTextField();
+        jtfData = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jtfEmail = new javax.swing.JTextField();
+        jtfObservacao = new javax.swing.JTextField();
         btnAdicionar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -75,15 +75,15 @@ public ListagemPessoa listagem;
 
         jLabel1.setText("Código:");
 
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Data:");
 
-        jtfNome.addActionListener(new java.awt.event.ActionListener() {
+        jtfData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfNomeActionPerformed(evt);
+                jtfDataActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Email:");
+        jLabel4.setText("Observação:");
 
         btnAdicionar.setText("Adicionar");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,29 +124,27 @@ public ListagemPessoa listagem;
                         .addComponent(btnAdicionar)
                         .addGap(18, 18, 18)
                         .addComponent(btnAlterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExcluir)
                         .addGap(28, 28, 28)
                         .addComponent(jButton4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfCodigo))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfCodigo)
+                            .addComponent(jtfData, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel4)
-                        .addGap(12, 12, 12)
-                        .addComponent(jtfEmail))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel2)
-                        .addGap(10, 10, 10)
-                        .addComponent(jtfNome)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtfObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,13 +157,13 @@ public ListagemPessoa listagem;
                     .addComponent(jLabel1))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(46, 46, 46)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addComponent(jtfObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdicionar)
                     .addComponent(btnAlterar)
@@ -269,9 +267,9 @@ dispose();        // TODO add your handling code here:
 controlador.ControladorPessoa.inserir(this);        // TODO add your handling code here:
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
-    private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
+    private void jtfDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDataActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNomeActionPerformed
+    }//GEN-LAST:event_jtfDataActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
 controlador.ControladorPessoa.alterar(this);         // TODO add your handling code here:
@@ -347,7 +345,7 @@ controlador.ControladorPessoa.alterar(this);         // TODO add your handling c
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     public javax.swing.JTextField jtfCodigo;
-    public javax.swing.JTextField jtfEmail;
-    public javax.swing.JTextField jtfNome;
+    public javax.swing.JTextField jtfData;
+    public javax.swing.JTextField jtfObservacao;
     // End of variables declaration//GEN-END:variables
 }

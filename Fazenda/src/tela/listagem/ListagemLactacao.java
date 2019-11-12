@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package tela.listagem;
-import controlador.ControladorPessoa;
-import tela.manutencao.ManutencaoPessoa;
+import controlador.ControladorLactacao;
+import tela.manutencao.ManutencaoLactacao;
 /**
  *
  * @author Avell
@@ -18,7 +18,7 @@ public class ListagemLactacao extends javax.swing.JDialog {
     public ListagemLactacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        ControladorPessoa.atualizarTabela(tabela);
+        ControladorLactacao.atualizarTabela(tabela);
     }
 
     /**
@@ -97,7 +97,7 @@ public class ListagemLactacao extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-ManutencaoPessoa manutencao = new ManutencaoPessoa(null, true, this);
+ManutencaoLactacao manutencao = new ManutencaoLactacao(null, true, this);
 manutencao.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnNovoActionPerformed
 
@@ -108,7 +108,7 @@ if (evt.getClickCount() == 2) {
             //obtém a chave primária
             int pk = Integer.parseInt(tabela.getValueAt(linhaSelecionada, 0).toString()); //pk está na coluna 0
             //abre a manutenção
-            ManutencaoPessoa manutencao = new ManutencaoPessoa(null, true, this, pk);
+            ManutencaoLactacao manutencao = new ManutencaoLactacao(null, true, this, pk);
             manutencao.setVisible(true);
 }        // TODO add your handling code here:
     }//GEN-LAST:event_tabelaMousePressed
