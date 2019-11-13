@@ -25,8 +25,8 @@ public class DaoVaca {
             ps.setInt(2, objeto.getSituacao());
             ps.setDate(3, Date.valueOf(objeto.getNascimento()));
             ps.setString(4, objeto.getObservacao());
-            ps.setInt(5, objeto.getRacaVaca());
-            ps.setInt(6, objeto.getMaeVaca());
+            ps.setInt(5, objeto.getRacaVaca().getCodigo());
+            ps.setInt(6, objeto.getMaeVaca().getCodigo());
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -42,8 +42,8 @@ public class DaoVaca {
             ps.setInt(2, objeto.getSituacao());
             ps.setDate(3, Date.valueOf(objeto.getNascimento()));
             ps.setString(4, objeto.getObservacao());
-            ps.setInt(5, objeto.getRacaVaca());
-            ps.setInt(6, objeto.getMaeVaca());
+            ps.setInt(5, objeto.getRacaVaca().getCodigo());
+            ps.setInt(6, objeto.getMaeVaca().getCodigo());
             ps.setInt(7, objeto.getCodigo());
             ps.executeUpdate();
             return true;
@@ -81,8 +81,8 @@ public class DaoVaca {
                 objeto.setSituacao(rs.getInt("situacao"));
                 objeto.setNascimento(rs.getDate("nascimento").toLocalDate());
                 objeto.setObservacao(rs.getString("observacao"));
-                objeto.setRacaVaca(rs.getInt("cod_raca"));
-                objeto.setMaeVaca(rs.getInt("brinco_mae"));
+                objeto.setRacaVaca(DaoRaca.consultar(rs.getInt("cod_raca")));
+                objeto.setMaeVaca(DaoVaca.consultar(rs.getInt("brinco_mae")));
                 
                 resultados.add(objeto);//não mexa nesse, ele adiciona o objeto na lista
             }
@@ -110,8 +110,8 @@ public class DaoVaca {
                 objeto.setSituacao(rs.getInt("situacao"));
                 objeto.setNascimento(rs.getDate("nascimento").toLocalDate());
                 objeto.setObservacao(rs.getString("observacao"));
-                objeto.setRacaVaca(rs.getInt("cod_raca"));
-                objeto.setMaeVaca(rs.getInt("brinco_mae"));
+                objeto.setRacaVaca(DaoRaca.consultar(rs.getInt("cod_raca")));
+                objeto.setMaeVaca(DaoVaca.consultar(rs.getInt("brinco_mae")));
                 return objeto;//não mexa nesse, ele adiciona o objeto na lista
             }
         } catch (SQLException | ClassNotFoundException ex) {

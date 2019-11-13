@@ -33,7 +33,7 @@ public class Raca {
 
     @Override
     public String toString() {
-        return "Raca{" + "nome=" + nome + '}';
+        return nome;
     }
 
     @Override

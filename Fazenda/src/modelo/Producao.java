@@ -17,8 +17,8 @@ private Integer codigo;
 private Integer turno;
 private LocalDate data;
 private Integer total;
-private Integer pessoaVaca;
-private Integer VacaProducao;
+private Pessoa pessoaVaca;
+private Vaca VacaProducao;
 private String observacao;
 
     public Integer getCodigo() {
@@ -53,21 +53,22 @@ private String observacao;
         this.total = total;
     }
 
-    public Integer getPessoaVaca() {
+    public Pessoa getPessoaVaca() {
         return pessoaVaca;
     }
 
-    public void setPessoaVaca(Integer pessoaVaca) {
+    public void setPessoaVaca(Pessoa pessoaVaca) {
         this.pessoaVaca = pessoaVaca;
     }
 
-    public Integer getVacaProducao() {
+    public Vaca getVacaProducao() {
         return VacaProducao;
     }
 
-    public void setVacaProducao(Integer VacaProducao) {
+    public void setVacaProducao(Vaca VacaProducao) {
         this.VacaProducao = VacaProducao;
     }
+
 
     public String getObservacao() {
         return observacao;

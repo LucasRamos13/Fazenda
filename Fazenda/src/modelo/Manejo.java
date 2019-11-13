@@ -15,6 +15,7 @@ public class Manejo {
     private Integer codigo;
     private LocalDate data;
     private String observacao;
+    private Vaca VacaManejo;
 
     public Integer getCodigo() {
         return codigo;
@@ -43,6 +44,14 @@ public class Manejo {
     @Override
     public String toString() {
         return "Manejo{" + "codigo=" + codigo + ", data=" + data + '}';
+    }
+
+    public Vaca getVacaManejo() {
+        return VacaManejo;
+    }
+
+    public void setVacaManejo(Vaca VacaManejo) {
+        this.VacaManejo = VacaManejo;
     }
     
     

@@ -21,7 +21,7 @@ public class DaoTouro {
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setString(1, objeto.getNome());
-            ps.setInt(2, objeto.getRaca());
+            ps.setInt(2, objeto.getRaca().getCodigo());
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -34,7 +34,7 @@ public class DaoTouro {
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setString(1, objeto.getNome()); 
-            ps.setInt(2, objeto.getRaca());
+            ps.setInt(2, objeto.getRaca().getCodigo());
             ps.setInt(3, objeto.getCodigo());
             ps.executeUpdate();
             return true;
@@ -69,7 +69,7 @@ public class DaoTouro {
                 //definir um set para cada atributo da entidade, cuidado com o tipo
                 objeto.setCodigo(rs.getInt("codigo"));
                 objeto.setNome(rs.getString("nome"));
-                objeto.setRaca(rs.getInt("cod_raca"));
+                objeto.setRaca(DaoRaca.consultar(rs.getInt("cod_raca")));
                 
                 resultados.add(objeto);//não mexa nesse, ele adiciona o objeto na lista
             }
@@ -93,7 +93,7 @@ public class DaoTouro {
                 //definir um set para cada atributo da entidade, cuidado com o tipo
                 objeto.setCodigo(rs.getInt("codigo"));
                 objeto.setNome(rs.getString("nome"));
-                objeto.setRaca(rs.getInt("cod_raca"));
+                objeto.setRaca(DaoRaca.consultar(rs.getInt("cod_raca")));
                 return objeto;//não mexa nesse, ele adiciona o objeto na lista
             }
         } catch (SQLException | ClassNotFoundException ex) {

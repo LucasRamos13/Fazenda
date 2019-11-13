@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package controlador;
+import dao.DaoRaca;
 import dao.DaoTouro;
 import javax.swing.JOptionPane;
 import modelo.Touro;
@@ -11,8 +12,10 @@ import tela.manutencao.ManutencaoTouro;
 import java.util.List;
 
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import modelo.Raca;
 /**
  *
  * @author Avell
@@ -21,7 +24,7 @@ public class ControladorTouro {
     public static void inserir(ManutencaoTouro man){
         Touro objeto = new Touro();
         objeto.setNome(man.jtfNome.getText());
-        objeto.setRaca((Integer) man.comRaca.getSelectedItem());
+        objeto.setRaca((Raca) man.comRaca.getSelectedItem());
         boolean resultado = DaoTouro.inserir(objeto);
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
@@ -38,7 +41,7 @@ man.dispose();//fechar a tela da manutenção
         //definir todos os atributos
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
         objeto.setNome(man.jtfNome.getText());
-        objeto.setRaca((Integer) man.comRaca.getSelectedItem());
+        objeto.setRaca((Raca) man.comRaca.getSelectedItem());
         
         boolean resultado = DaoTouro.alterar(objeto);
         if (resultado) {
@@ -95,4 +98,8 @@ man.dispose();//fechar a tela da manutenção
         man.btnAdicionar.setEnabled(false); //desabilitando o botão adicionar
     }
      
+     public static void atualizaComboRaca(ManutencaoTouro man) {
+        DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(DaoRaca.consultar().toArray());
+        man.comRaca.setModel(defaultComboBoxModel);
+}
 }

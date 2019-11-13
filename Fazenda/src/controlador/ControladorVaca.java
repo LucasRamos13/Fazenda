@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package controlador;
+import dao.DaoRaca;
 import dao.DaoVaca;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -13,8 +14,10 @@ import tela.manutencao.ManutencaoVaca;
 import java.util.List;
 
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import modelo.Raca;
 /**
  *
  * @author Avell
@@ -25,9 +28,9 @@ public class ControladorVaca {
         objeto.setOrigem((Integer) man.comOrigem.getSelectedItem());
         objeto.setSituacao((Integer) man.comSituacao.getSelectedItem());
         objeto.setNascimento(LocalDate.parse(man.jtfNascimento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        objeto.setRacaVaca((Integer)man.comRaca.getSelectedItem());
+        objeto.setRacaVaca((Raca)man.comRaca.getSelectedItem());
         objeto.setObservacao(man.jtfObservacao.getText());
-        objeto.setMaeVaca((Integer)man.comMae.getSelectedItem());
+        objeto.setMaeVaca((Vaca)man.comMae.getSelectedItem());
         
         
         boolean resultado = DaoVaca.inserir(objeto);
@@ -48,9 +51,9 @@ man.dispose();//fechar a tela da manutenção
     objeto.setOrigem((Integer) man.comOrigem.getSelectedItem());
         objeto.setSituacao((Integer) man.comSituacao.getSelectedItem());
         objeto.setNascimento(LocalDate.parse(man.jtfNascimento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        objeto.setRacaVaca((Integer)man.comRaca.getSelectedItem());
+        objeto.setRacaVaca((Raca)man.comRaca.getSelectedItem());
         objeto.setObservacao(man.jtfObservacao.getText());
-        objeto.setMaeVaca((Integer)man.comMae.getSelectedItem());
+        objeto.setMaeVaca((Vaca)man.comMae.getSelectedItem());
 
         
         boolean resultado = DaoVaca.alterar(objeto);
@@ -120,4 +123,12 @@ man.dispose();//fechar a tela da manutenção
         man.btnAdicionar.setEnabled(false); //desabilitando o botão adicionar
     }
      
+     public static void atualizaComboRaca(ManutencaoVaca man) {
+        DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(DaoRaca.consultar().toArray());
+        man.comRaca.setModel(defaultComboBoxModel);
+}
+          public static void atualizaComboMae(ManutencaoVaca man) {
+        DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(DaoVaca.consultar().toArray());
+        man.comMae.setModel(defaultComboBoxModel);
+}
 }

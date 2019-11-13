@@ -50,17 +50,18 @@ public class Lactacao {
         this.observacao = observacao;
     }
 
+
+    @Override
+    public String toString() {
+        return "Lactacao{" + "inicio=" + inicio + ", Vaca=" + Vaca + '}';
+    }
+
     public Integer getVaca() {
         return Vaca;
     }
 
     public void setVaca(Integer Vaca) {
         this.Vaca = Vaca;
-    }
-
-    @Override
-    public String toString() {
-        return "Lactacao{" + "inicio=" + inicio + ", Vaca=" + Vaca + '}';
     }
     
     

@@ -18,8 +18,8 @@ public class Vaca {
     private Integer situacao;
     private LocalDate nascimento;
     private String observacao;
-    private Integer maeVaca;
-    private Integer RacaVaca;
+    private Vaca maeVaca;
+    private Raca RacaVaca;
 
     public Integer getCodigo() {
         return codigo;
@@ -61,21 +61,25 @@ public class Vaca {
         this.observacao = observacao;
     }
 
-    public Integer getMaeVaca() {
+    public Vaca getMaeVaca() {
         return maeVaca;
     }
 
-    public void setMaeVaca(Integer maeVaca) {
+    public void setMaeVaca(Vaca maeVaca) {
         this.maeVaca = maeVaca;
     }
 
-    public Integer getRacaVaca() {
+
+
+    public Raca getRacaVaca() {
         return RacaVaca;
     }
 
-    public void setRacaVaca(Integer RacaVaca) {
+    public void setRacaVaca(Raca RacaVaca) {
         this.RacaVaca = RacaVaca;
     }
+
+
 
     @Override
     public int hashCode() {
@@ -104,8 +108,10 @@ public class Vaca {
 
     @Override
     public String toString() {
-        return "Vaca{" + "codigo=" + codigo + ", maeVaca=" + maeVaca + ", RacaVaca=" + RacaVaca + '}';
+        return codigo.toString();
     }
+
+
     
     
 }

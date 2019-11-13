@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package tela.manutencao;
-import tela.listagem.ListagemPessoa;
+import tela.listagem.ListagemManejo;
 /**
  *
  * @author Avell
  */
 public class ManutencaoManejo extends javax.swing.JDialog {
-public ListagemPessoa listagem;
+public ListagemManejo listagem;
     /**
      * Creates new form ManutencaoRaca
      */
@@ -19,7 +19,7 @@ public ListagemPessoa listagem;
         initComponents();
     }
  //Entrando na Manutenção de Produto para Adicionar um novo Produto (OBS: o nome do método deverá ser o mesmo nome da classe)
- public ManutencaoManejo(java.awt.Frame parent, boolean modal, ListagemPessoa listagem) {
+ public ManutencaoManejo(java.awt.Frame parent, boolean modal, ListagemManejo listagem) {
         super(parent, modal);
         initComponents();
         this.listagem = listagem;
@@ -28,13 +28,13 @@ public ListagemPessoa listagem;
         btnAlterar.setEnabled(false); //desabilitando o botão alterar
         btnExcluir.setEnabled(false); //desabilitando o botão excluir
   }
-   public ManutencaoManejo(java.awt.Frame parent, boolean modal, ListagemPessoa listagem, int pk) {
+   public ManutencaoManejo(java.awt.Frame parent, boolean modal, ListagemManejo listagem, int pk) {
         super(parent, modal);
         initComponents();
         
         jtfCodigo.setEnabled(false);  //desabilitando a edição do campo código
         this.listagem = listagem;
-        controlador.ControladorPessoa.atualizaCampos(this, pk);//pegando os valores do BD e colocando na tela
+        controlador.ControladorManejo.atualizaCampos(this, pk);//pegando os valores do BD e colocando na tela
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -194,7 +194,7 @@ public ListagemPessoa listagem;
 
         jButton2.setText("Apagar");
 
-        jLabel5.setText("Manejo:");
+        jLabel5.setText("Vacas:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -205,21 +205,22 @@ public ListagemPessoa listagem;
                 .addComponent(jLabel7)
                 .addGap(85, 85, 85))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jButton2))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,7 +257,7 @@ public ListagemPessoa listagem;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-controlador.ControladorPessoa.excluir(this);        // TODO add your handling code here:
+controlador.ControladorManejo.excluir(this);        // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -264,7 +265,7 @@ dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-controlador.ControladorPessoa.inserir(this);        // TODO add your handling code here:
+controlador.ControladorManejo.inserir(this);        // TODO add your handling code here:
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void jtfDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDataActionPerformed
@@ -272,7 +273,7 @@ controlador.ControladorPessoa.inserir(this);        // TODO add your handling co
     }//GEN-LAST:event_jtfDataActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-controlador.ControladorPessoa.alterar(this);         // TODO add your handling code here:
+controlador.ControladorManejo.alterar(this);         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**

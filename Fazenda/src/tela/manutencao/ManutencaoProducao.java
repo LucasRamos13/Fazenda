@@ -17,11 +17,15 @@ public ListagemProducao listagem;
     public ManutencaoProducao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        controlador.ControladorProducao.atualizaComboVaca(this);
+        controlador.ControladorProducao.atualizaComboPessoa(this);
     }
  //Entrando na Manutenção de Produto para Adicionar um novo Produto (OBS: o nome do método deverá ser o mesmo nome da classe)
  public ManutencaoProducao(java.awt.Frame parent, boolean modal, ListagemProducao listagem) {
         super(parent, modal);
         initComponents();
+        controlador.ControladorProducao.atualizaComboVaca(this);
+        controlador.ControladorProducao.atualizaComboPessoa(this);
         this.listagem = listagem;
         
         jtfCodigo.setEnabled(false);  //desabilitando a edição do campo código
@@ -31,6 +35,8 @@ public ListagemProducao listagem;
    public ManutencaoProducao(java.awt.Frame parent, boolean modal, ListagemProducao listagem, int pk) {
         super(parent, modal);
         initComponents();
+        controlador.ControladorProducao.atualizaComboVaca(this);
+        controlador.ControladorProducao.atualizaComboPessoa(this);
         
         jtfCodigo.setEnabled(false);  //desabilitando a edição do campo código
         this.listagem = listagem;
@@ -117,7 +123,7 @@ public ListagemProducao listagem;
 
         comVaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1" }));
 
-        comTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manhã", "Tarde"}));
 
         jLabel7.setText("Turno:");
 

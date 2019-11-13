@@ -67,6 +67,8 @@ public class Inseminacao {
         this.touro = touro;
     }
 
+
+
     @Override
     public String toString() {
         return "Inseminacao{" + "data=" + data + ", vaca=" + vaca + '}';

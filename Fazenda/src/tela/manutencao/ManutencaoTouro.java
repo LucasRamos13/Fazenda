@@ -17,11 +17,13 @@ public ListagemTouro listagem;
     public ManutencaoTouro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        controlador.ControladorTouro.atualizaComboRaca(this); 
     }
  //Entrando na Manutenção de Produto para Adicionar um novo Produto (OBS: o nome do método deverá ser o mesmo nome da classe)
  public ManutencaoTouro(java.awt.Frame parent, boolean modal, ListagemTouro listagem) {
         super(parent, modal);
         initComponents();
+        controlador.ControladorTouro.atualizaComboRaca(this); 
         this.listagem = listagem;
         
         jtfCodigo.setEnabled(false);  //desabilitando a edição do campo código
@@ -34,6 +36,7 @@ public ListagemTouro listagem;
         
         jtfCodigo.setEnabled(false);  //desabilitando a edição do campo código
         this.listagem = listagem;
+        controlador.ControladorTouro.atualizaComboRaca(this); 
         controlador.ControladorTouro.atualizaCampos(this, pk);//pegando os valores do BD e colocando na tela
     }
     /**

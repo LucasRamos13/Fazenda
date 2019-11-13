@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package controlador;
+import dao.DaoPessoa;
 import dao.DaoProducao;
+import dao.DaoVaca;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
@@ -13,8 +15,11 @@ import tela.manutencao.ManutencaoProducao;
 import java.util.List;
 
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import modelo.Pessoa;
+import modelo.Vaca;
 /**
  *
  * @author Avell
@@ -22,12 +27,12 @@ import javax.swing.table.DefaultTableModel;
 public class ControladorProducao {
         public static void inserir(ManutencaoProducao man){
         Producao objeto = new Producao();
-        objeto.setTurno((Integer) man.comTurno.getSelectedItem());
+        objeto.setTurno(man.comTurno.getSelectedIndex());
         objeto.setData(LocalDate.parse(man.jtfData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         objeto.setTotal(Integer.parseInt(man.jtfTotal.getText()));
         objeto.setObservacao(man.jtfObservacao.getText());
-        objeto.setVacaProducao((Integer) man.comVaca.getSelectedItem());
-        objeto.setPessoaVaca((Integer) man.comPessoa.getSelectedItem());
+        objeto.setVacaProducao((Vaca) man.comVaca.getSelectedItem());
+        objeto.setPessoaVaca((Pessoa) man.comPessoa.getSelectedItem());
         
         boolean resultado = DaoProducao.inserir(objeto);
         if (resultado) {
@@ -44,12 +49,12 @@ man.dispose();//fechar a tela da manutenção
         Producao objeto = new Producao();
         //definir todos os atributos
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
-        objeto.setTurno((Integer) man.comTurno.getSelectedItem());
+        objeto.setTurno(man.comTurno.getSelectedIndex());
         objeto.setData(LocalDate.parse(man.jtfData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         objeto.setTotal(Integer.parseInt(man.jtfTotal.getText()));
         objeto.setObservacao(man.jtfObservacao.getText());
-        objeto.setVacaProducao((Integer) man.comVaca.getSelectedItem());
-        objeto.setPessoaVaca((Integer) man.comPessoa.getSelectedItem());
+        objeto.setVacaProducao((Vaca) man.comVaca.getSelectedItem());
+        objeto.setPessoaVaca((Pessoa) man.comPessoa.getSelectedItem());
 
         
         boolean resultado = DaoProducao.alterar(objeto);
@@ -113,9 +118,18 @@ man.dispose();//fechar a tela da manutenção
         man.jtfObservacao.setText(objeto.getObservacao());
         man.comVaca.setSelectedItem(objeto.getPessoaVaca());
         man.comPessoa.setSelectedItem(objeto.getVacaProducao());
+        man.comTurno.setSelectedIndex(objeto.getTurno());
         
         man.jtfCodigo.setEnabled(false); //desabilitando o campo código
         man.btnAdicionar.setEnabled(false); //desabilitando o botão adicionar
     }
      
+     public static void atualizaComboVaca(ManutencaoProducao man) {
+        DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(DaoVaca.consultar().toArray());
+        man.comVaca.setModel(defaultComboBoxModel);
+}
+     public static void atualizaComboPessoa(ManutencaoProducao man) {
+        DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(DaoPessoa.consultar().toArray());
+        man.comPessoa.setModel(defaultComboBoxModel);
+}
 }
