@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package controlador;
-import dao.DaoLactacao;
+import dao.DaoManejo;
 import dao.DaoVaca;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
-import modelo.Lactacao;
-import tela.manutencao.ManutencaoLactacao;
+import modelo.Manejo;
+import tela.manutencao.ManutencaoManejo;
 import java.util.List;
 
 import java.util.Vector;
@@ -22,16 +22,13 @@ import modelo.Vaca;
  *
  * @author Avell
  */
-public class ControladorLactacao {
-        public static void inserir(ManutencaoLactacao man){
-        Lactacao objeto = new Lactacao();
-        objeto.setInicio(LocalDate.parse(man.jtfInicio.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        objeto.setFim(LocalDate.parse(man.jtfFim.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        objeto.setVaca((Vaca) man.comVaca.getSelectedItem());
+public class ControladorManejo {
+        public static void inserir(ManutencaoManejo man){
+        Manejo objeto = new Manejo();
+        objeto.setData(LocalDate.parse(man.jtfData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         objeto.setObservacao(man.jtfObservacao.getText());
-
         
-        boolean resultado = DaoLactacao.inserir(objeto);
+        boolean resultado = DaoManejo.inserir(objeto);
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
             if (man.listagem != null) {
@@ -42,17 +39,14 @@ man.dispose();//fechar a tela da manutenção
             JOptionPane.showMessageDialog(null, "Erro!");
         }
 }
-    public static void alterar(ManutencaoLactacao man){
-        Lactacao objeto = new Lactacao();
+    public static void alterar(ManutencaoManejo man){
+        Manejo objeto = new Manejo();
         //definir todos os atributos
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
-        objeto.setInicio(LocalDate.parse(man.jtfInicio.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-         objeto.setFim(LocalDate.parse(man.jtfFim.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        objeto.setVaca((Vaca) man.comVaca.getSelectedItem());
+        objeto.setData(LocalDate.parse(man.jtfData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         objeto.setObservacao(man.jtfObservacao.getText());
-
         
-        boolean resultado = DaoLactacao.alterar(objeto);
+        boolean resultado = DaoManejo.alterar(objeto);
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
             if (man.listagem != null) {
@@ -63,11 +57,11 @@ man.dispose();//fechar a tela da manutenção
             JOptionPane.showMessageDialog(null, "Erro!");
         }
     }
-     public static void excluir(ManutencaoLactacao man){
-        Lactacao objeto = new Lactacao();
+     public static void excluir(ManutencaoManejo man){
+        Manejo objeto = new Manejo();
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText())); //só precisa definir a chave primeira
         
-        boolean resultado = DaoLactacao.excluir(objeto);
+        boolean resultado = DaoManejo.excluir(objeto);
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
             if (man.listagem != null) {
@@ -82,39 +76,77 @@ man.dispose();//fechar a tela da manutenção
         DefaultTableModel modelo = new DefaultTableModel();
         //definindo o cabeçalho da tabela
         modelo.addColumn("Código");
-        modelo.addColumn("Início");
-        modelo.addColumn("Fim");
+        modelo.addColumn("Data");
         modelo.addColumn("Observação");
-        modelo.addColumn("Vaca");
-        List<Lactacao> resultados = DaoLactacao.consultar();
-        for (Lactacao objeto : resultados) {
+        List<Manejo> resultados = DaoManejo.consultar();
+        for (Manejo objeto : resultados) {
             Vector linha = new Vector();
             
             //definindo o conteúdo da tabela
             linha.add(objeto.getCodigo());
-            linha.add(objeto.getInicio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-            linha.add(objeto.getFim().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            linha.add(objeto.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             linha.add(objeto.getObservacao());
-            linha.add(objeto.getVaca());
             modelo.addRow(linha); //adicionando a linha na tabela
         }
         tabela.setModel(modelo);
     }
-     public static void atualizaCampos(ManutencaoLactacao man, int pk){ 
-        Lactacao objeto = DaoLactacao.consultar(pk);
+     public static void atualizaCampos(ManutencaoManejo man, int pk){ 
+        Manejo objeto = DaoManejo.consultar(pk);
         //Definindo os valores do campo na tela (um para cada atributo/campo)
         man.jtfCodigo.setText(objeto.getCodigo().toString());
-        man.jtfInicio.setText(objeto.getInicio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        man.jtfFim.setText(objeto.getFim().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        man.jtfData.setText(objeto.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         man.jtfObservacao.setText(objeto.getObservacao());
-        man.comVaca.setSelectedItem(objeto.getVaca());
         
         man.jtfCodigo.setEnabled(false); //desabilitando o campo código
         man.btnAdicionar.setEnabled(false); //desabilitando o botão adicionar
     }
      
-     public static void atualizaComboVaca(ManutencaoLactacao man) {
+     
+     
+     
+             public static void inserirVaca(ManutencaoManejo man){
+        Manejo objeto = new Manejo();
+        objeto.setCodigoManejo(Integer.parseInt(man.jtfCodigo.getText()));
+        objeto.setVacaManejo((Vaca)man.comVaca.getSelectedItem());
+        
+        boolean resultado = DaoManejo.inserirVaca(objeto);
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
+         atualizarTabelaVaca(man.tabelaVaca);}}
+             
+                  
+             public static void atualizarTabelaVaca(JTable tabelaVaca) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        //definindo o cabeçalho da tabela
+        modelo.addColumn("Manejo");
+        modelo.addColumn("Vaca");
+        List<Manejo> resultados = DaoManejo.consultarVaca();
+        for (Manejo objeto : resultados) {
+            Vector linha = new Vector();
+            
+            //definindo o conteúdo da tabela
+            linha.add(objeto.getCodigoManejo());
+            linha.add(objeto.getVacaManejo());
+            modelo.addRow(linha); //adicionando a linha na tabela
+        }
+        tabelaVaca.setModel(modelo);
+    }
+             
+             public static void atualizaComboVaca(ManutencaoManejo man) {
         DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(DaoVaca.consultar().toArray());
         man.comVaca.setModel(defaultComboBoxModel);
 }
+
+    public static void excluirVaca(ManutencaoManejo man) {
+        Manejo objeto = new Manejo();
+        objeto.setVacaManejo((Vaca)man.comVaca.getSelectedItem());
+        objeto.setCodigoManejo(Integer.parseInt(man.jtfCodigo.getText()));
+ 
+        boolean resultado = DaoManejo.excluirVaca(objeto);
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
+         atualizarTabelaVaca(man.tabelaVaca);}}
+
+
+
 }

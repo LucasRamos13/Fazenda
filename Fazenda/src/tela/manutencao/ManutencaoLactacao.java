@@ -17,11 +17,13 @@ public ListagemLactacao listagem;
     public ManutencaoLactacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        controlador.ControladorLactacao.atualizaComboVaca(this);
     }
  //Entrando na Manutenção de Produto para Adicionar um novo Produto (OBS: o nome do método deverá ser o mesmo nome da classe)
  public ManutencaoLactacao(java.awt.Frame parent, boolean modal, ListagemLactacao listagem) {
         super(parent, modal);
         initComponents();
+        controlador.ControladorLactacao.atualizaComboVaca(this);
         this.listagem = listagem;
         
         jtfCodigo.setEnabled(false);  //desabilitando a edição do campo código
@@ -34,6 +36,7 @@ public ListagemLactacao listagem;
         
         jtfCodigo.setEnabled(false);  //desabilitando a edição do campo código
         this.listagem = listagem;
+        controlador.ControladorLactacao.atualizaComboVaca(this);
         controlador.ControladorLactacao.atualizaCampos(this, pk);//pegando os valores do BD e colocando na tela
     }
     /**

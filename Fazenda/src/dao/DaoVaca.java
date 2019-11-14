@@ -95,7 +95,7 @@ public class DaoVaca {
     
    public static Vaca consultar(int primaryKey) {
         //editar o SQL conforme a entidade
-        String sql = "SELECT brinco, origem, situacao, nascimento, observacao, cod_raca, brinco_mae FROM Vaca WHERE codigo=?";
+        String sql = "SELECT brinco, origem, situacao, nascimento, observacao, cod_raca, brinco_mae FROM Vaca WHERE brinco=?";
         PreparedStatement ps;
         try {
             ps = conexao.Conexao.getConexao().prepareStatement(sql);
@@ -104,7 +104,6 @@ public class DaoVaca {
             while (rs.next()) {
                 Vaca objeto = new Vaca();
                 //definir um set para cada atributo da entidade, cuidado com o tipo
-                objeto.setCodigo(rs.getInt("codigo"));
                 objeto.setCodigo(rs.getInt("brinco"));
                 objeto.setOrigem(rs.getInt("origem"));
                 objeto.setSituacao(rs.getInt("situacao"));

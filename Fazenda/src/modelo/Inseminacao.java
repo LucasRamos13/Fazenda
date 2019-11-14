@@ -16,8 +16,8 @@ public class Inseminacao {
     private LocalDate data;
     private String observacao;
     private Integer situacao;
-    private Integer vaca;
-    private Integer touro;
+    private Vaca vaca;
+    private Touro touro;
 
     public Integer getCodigo() {
         return codigo;
@@ -51,21 +51,22 @@ public class Inseminacao {
         this.situacao = situacao;
     }
 
-    public Integer getVaca() {
+    public Vaca getVaca() {
         return vaca;
     }
 
-    public void setVaca(Integer vaca) {
+    public void setVaca(Vaca vaca) {
         this.vaca = vaca;
     }
 
-    public Integer getTouro() {
+    public Touro getTouro() {
         return touro;
     }
 
-    public void setTouro(Integer touro) {
+    public void setTouro(Touro touro) {
         this.touro = touro;
     }
+
 
 
 

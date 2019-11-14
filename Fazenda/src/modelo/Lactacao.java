@@ -16,7 +16,7 @@ public class Lactacao {
     private LocalDate inicio;
     private LocalDate fim;
     private String observacao;
-    private Integer Vaca;
+    private Vaca Vaca;
 
     public Integer getCodigo() {
         return codigo;
@@ -56,13 +56,14 @@ public class Lactacao {
         return "Lactacao{" + "inicio=" + inicio + ", Vaca=" + Vaca + '}';
     }
 
-    public Integer getVaca() {
+    public Vaca getVaca() {
         return Vaca;
     }
 
-    public void setVaca(Integer Vaca) {
+    public void setVaca(Vaca Vaca) {
         this.Vaca = Vaca;
     }
+
     
     
 }

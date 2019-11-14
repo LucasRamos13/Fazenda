@@ -25,8 +25,8 @@ import modelo.Raca;
 public class ControladorVaca {
         public static void inserir(ManutencaoVaca man){
         Vaca objeto = new Vaca();
-        objeto.setOrigem((Integer) man.comOrigem.getSelectedItem());
-        objeto.setSituacao((Integer) man.comSituacao.getSelectedItem());
+    objeto.setOrigem(man.comOrigem.getSelectedIndex());
+        objeto.setSituacao(man.comSituacao.getSelectedIndex());
         objeto.setNascimento(LocalDate.parse(man.jtfNascimento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         objeto.setRacaVaca((Raca)man.comRaca.getSelectedItem());
         objeto.setObservacao(man.jtfObservacao.getText());
@@ -48,8 +48,8 @@ man.dispose();//fechar a tela da manutenção
         Vaca objeto = new Vaca();
         //definir todos os atributos
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
-    objeto.setOrigem((Integer) man.comOrigem.getSelectedItem());
-        objeto.setSituacao((Integer) man.comSituacao.getSelectedItem());
+    objeto.setOrigem(man.comOrigem.getSelectedIndex());
+        objeto.setSituacao(man.comSituacao.getSelectedIndex());
         objeto.setNascimento(LocalDate.parse(man.jtfNascimento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         objeto.setRacaVaca((Raca)man.comRaca.getSelectedItem());
         objeto.setObservacao(man.jtfObservacao.getText());

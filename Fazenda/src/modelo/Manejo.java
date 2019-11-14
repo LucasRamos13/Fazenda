@@ -16,6 +16,7 @@ public class Manejo {
     private LocalDate data;
     private String observacao;
     private Vaca VacaManejo;
+    private Integer codigoManejo;
 
     public Integer getCodigo() {
         return codigo;
@@ -53,6 +54,17 @@ public class Manejo {
     public void setVacaManejo(Vaca VacaManejo) {
         this.VacaManejo = VacaManejo;
     }
+
+    public Integer getCodigoManejo() {
+        return codigoManejo;
+    }
+
+    public void setCodigoManejo(Integer codigoManejo) {
+        this.codigoManejo = codigoManejo;
+    }
+
+
+
     
     
 }

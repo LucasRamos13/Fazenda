@@ -24,7 +24,7 @@ public class DaoLactacao {
             ps.setDate(1, Date.valueOf(objeto.getInicio()));
             ps.setDate(2, Date.valueOf(objeto.getFim()));
             ps.setString(3, objeto.getObservacao());
-            ps.setInt(4, objeto.getVaca());
+            ps.setInt(4, objeto.getVaca().getCodigo());
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -39,7 +39,7 @@ public class DaoLactacao {
             ps.setDate(1, Date.valueOf(objeto.getInicio()));
             ps.setDate(2, Date.valueOf(objeto.getFim()));
             ps.setString(3, objeto.getObservacao());
-            ps.setInt(4, objeto.getVaca());
+            ps.setInt(4, objeto.getVaca().getCodigo());
             ps.setInt(5, objeto.getCodigo());
             ps.executeUpdate();
             return true;
@@ -76,7 +76,7 @@ public class DaoLactacao {
                 objeto.setInicio(rs.getDate("inicio").toLocalDate());
                 objeto.setFim(rs.getDate("fim").toLocalDate());
                 objeto.setObservacao(rs.getString("observacao"));
-                objeto.setVaca(rs.getInt("cod_vaca"));
+                objeto.setVaca(DaoVaca.consultar(rs.getInt("cod_vaca")));
                 
                 resultados.add(objeto);//não mexa nesse, ele adiciona o objeto na lista
             }
@@ -102,7 +102,7 @@ public class DaoLactacao {
                 objeto.setInicio(rs.getDate("inicio").toLocalDate());
                 objeto.setFim(rs.getDate("fim").toLocalDate());
                 objeto.setObservacao(rs.getString("observacao"));
-                objeto.setVaca(rs.getInt("cod_vaca"));
+                objeto.setVaca(DaoVaca.consultar(rs.getInt("cod_vaca")));
                 return objeto;//não mexa nesse, ele adiciona o objeto na lista
             }
         } catch (SQLException | ClassNotFoundException ex) {

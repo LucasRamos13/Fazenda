@@ -43,7 +43,7 @@ public class Touro {
 
     @Override
     public String toString() {
-        return "Touro{" + "nome=" + nome + '}';
+        return nome;
     }
     
     

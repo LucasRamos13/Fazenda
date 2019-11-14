@@ -5,6 +5,8 @@
  */
 package controlador;
 import dao.DaoInseminacao;
+import dao.DaoTouro;
+import dao.DaoVaca;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
@@ -13,8 +15,11 @@ import tela.manutencao.ManutencaoInseminacao;
 import java.util.List;
 
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import modelo.Touro;
+import modelo.Vaca;
 /**
  *
  * @author Avell
@@ -22,10 +27,10 @@ import javax.swing.table.DefaultTableModel;
 public class ControladorInseminacao {
         public static void inserir(ManutencaoInseminacao man){
         Inseminacao objeto = new Inseminacao();
-        objeto.setVaca((Integer) man.comVaca.getSelectedItem());
+        objeto.setVaca((Vaca) man.comVaca.getSelectedItem());
         objeto.setSituacao((Integer) man.comSituacao.getSelectedItem());
         objeto.setData(LocalDate.parse(man.jtfData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        objeto.setTouro((Integer)man.comTouro.getSelectedItem());
+        objeto.setTouro((Touro)man.comTouro.getSelectedItem());
         objeto.setObservacao(man.jtfObservacao.getText());
         
         
@@ -44,10 +49,10 @@ man.dispose();//fechar a tela da manutenção
         Inseminacao objeto = new Inseminacao();
         //definir todos os atributos
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
-    objeto.setVaca((Integer) man.comVaca.getSelectedItem());
+    objeto.setVaca((Vaca) man.comVaca.getSelectedItem());
         objeto.setSituacao((Integer) man.comSituacao.getSelectedItem());
         objeto.setData(LocalDate.parse(man.jtfData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        objeto.setTouro((Integer)man.comTouro.getSelectedItem());
+        objeto.setTouro((Touro)man.comTouro.getSelectedItem());
         objeto.setObservacao(man.jtfObservacao.getText());
 
         
@@ -117,4 +122,13 @@ man.dispose();//fechar a tela da manutenção
         man.btnAdicionar.setEnabled(false); //desabilitando o botão adicionar
     }
      
+     public static void atualizaComboVaca(ManutencaoInseminacao man) {
+        DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(DaoVaca.consultar().toArray());
+        man.comVaca.setModel(defaultComboBoxModel);
+}
+     
+     public static void atualizaComboTouro(ManutencaoInseminacao man) {
+        DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(DaoTouro.consultar().toArray());
+        man.comTouro.setModel(defaultComboBoxModel);
+}
 }

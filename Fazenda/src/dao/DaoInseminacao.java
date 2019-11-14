@@ -24,8 +24,8 @@ public class DaoInseminacao {
             ps.setDate(1, Date.valueOf(objeto.getData()));
             ps.setString(2, objeto.getObservacao());
             ps.setInt(3, objeto.getSituacao());
-            ps.setInt(4, objeto.getVaca());
-            ps.setInt(5, objeto.getTouro());
+            ps.setInt(4, objeto.getVaca().getCodigo());
+            ps.setInt(5, objeto.getTouro().getCodigo());
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -40,8 +40,8 @@ public class DaoInseminacao {
             ps.setDate(1, Date.valueOf(objeto.getData()));
             ps.setString(2, objeto.getObservacao());
             ps.setInt(3, objeto.getSituacao());
-            ps.setInt(4, objeto.getVaca());
-            ps.setInt(5, objeto.getTouro());
+            ps.setInt(4, objeto.getVaca().getCodigo());
+            ps.setInt(5, objeto.getTouro().getCodigo());
             ps.setInt(6, objeto.getCodigo());
             ps.executeUpdate();
             return true;
@@ -78,8 +78,8 @@ public class DaoInseminacao {
                 objeto.setData(rs.getDate("data_inseminacao").toLocalDate());
                 objeto.setObservacao(rs.getString("observacao"));
                 objeto.setSituacao(rs.getInt("situacao"));
-                objeto.setVaca(rs.getInt("cod_vaca"));
-                objeto.setTouro(rs.getInt("cod_touro"));
+                objeto.setVaca(DaoVaca.consultar(rs.getInt("cod_vaca")));
+                objeto.setTouro(DaoTouro.consultar(rs.getInt("cod_touro")));
                 
                 resultados.add(objeto);//não mexa nesse, ele adiciona o objeto na lista
             }
@@ -105,8 +105,8 @@ public class DaoInseminacao {
                 objeto.setData(rs.getDate("data_inseminacao").toLocalDate());
                 objeto.setObservacao(rs.getString("observacao"));
                 objeto.setSituacao(rs.getInt("situacao"));
-                objeto.setVaca(rs.getInt("cod_vaca"));
-                objeto.setTouro(rs.getInt("cod_touro"));
+                objeto.setVaca(DaoVaca.consultar(rs.getInt("cod_vaca")));
+                objeto.setTouro(DaoTouro.consultar(rs.getInt("cod_touro")));
                 return objeto;//não mexa nesse, ele adiciona o objeto na lista
             }
         } catch (SQLException | ClassNotFoundException ex) {

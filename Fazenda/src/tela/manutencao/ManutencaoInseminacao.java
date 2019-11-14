@@ -17,11 +17,15 @@ public ListagemInseminacao listagem;
     public ManutencaoInseminacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        controlador.ControladorInseminacao.atualizaComboVaca(this);
+        controlador.ControladorInseminacao.atualizaComboTouro(this);
     }
  //Entrando na Manutenção de Produto para Adicionar um novo Produto (OBS: o nome do método deverá ser o mesmo nome da classe)
  public ManutencaoInseminacao(java.awt.Frame parent, boolean modal, ListagemInseminacao listagem) {
         super(parent, modal);
         initComponents();
+        controlador.ControladorInseminacao.atualizaComboVaca(this);
+        controlador.ControladorInseminacao.atualizaComboTouro(this);
         this.listagem = listagem;
         
         jtfCodigo.setEnabled(false); //desabilitando a edição do campo código
@@ -36,6 +40,8 @@ public ListagemInseminacao listagem;
         jtfCodigo.setEnabled(false);
         jtfPrevisao.setEnabled(false);//desabilitando a edição do campo código
         this.listagem = listagem;
+        controlador.ControladorInseminacao.atualizaComboVaca(this);
+        controlador.ControladorInseminacao.atualizaComboTouro(this);
         controlador.ControladorInseminacao.atualizaCampos(this, pk);//pegando os valores do BD e colocando na tela
     }
     /**
