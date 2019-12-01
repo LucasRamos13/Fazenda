@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.Inseminacao;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -25,7 +26,11 @@ public class DaoInseminacao {
             ps.setString(2, objeto.getObservacao());
             ps.setInt(3, objeto.getSituacao());
             ps.setInt(4, objeto.getVaca().getCodigo());
+            if (objeto.getTouro() == null){
+                ps.setNull(5, Types.INTEGER);
+            }else{
             ps.setInt(5, objeto.getTouro().getCodigo());
+            };
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -41,7 +46,11 @@ public class DaoInseminacao {
             ps.setString(2, objeto.getObservacao());
             ps.setInt(3, objeto.getSituacao());
             ps.setInt(4, objeto.getVaca().getCodigo());
+            if (objeto.getTouro() == null){
+                ps.setNull(5, Types.INTEGER);
+            }else{
             ps.setInt(5, objeto.getTouro().getCodigo());
+            };
             ps.setInt(6, objeto.getCodigo());
             ps.executeUpdate();
             return true;

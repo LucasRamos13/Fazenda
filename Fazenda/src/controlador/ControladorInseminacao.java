@@ -130,5 +130,6 @@ man.dispose();//fechar a tela da manutenção
      public static void atualizaComboTouro(ManutencaoInseminacao man) {
         DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(DaoTouro.consultar().toArray());
         man.comTouro.setModel(defaultComboBoxModel);
+        man.comTouro.addItem(null);
 }
 }
