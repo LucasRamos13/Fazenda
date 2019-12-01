@@ -26,7 +26,9 @@ public class ControladorLactacao {
         public static void inserir(ManutencaoLactacao man){
         Lactacao objeto = new Lactacao();
         objeto.setInicio(LocalDate.parse(man.jtfInicio.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        if(man.jtfFim.getText() == ""){
         objeto.setFim(LocalDate.parse(man.jtfFim.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        }
         objeto.setVaca((Vaca) man.comVaca.getSelectedItem());
         objeto.setObservacao(man.jtfObservacao.getText());
 
@@ -47,7 +49,9 @@ man.dispose();//fechar a tela da manutenção
         //definir todos os atributos
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
         objeto.setInicio(LocalDate.parse(man.jtfInicio.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-         objeto.setFim(LocalDate.parse(man.jtfFim.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        if(man.jtfFim.getText() == ""){
+        objeto.setFim(LocalDate.parse(man.jtfFim.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        }
         objeto.setVaca((Vaca) man.comVaca.getSelectedItem());
         objeto.setObservacao(man.jtfObservacao.getText());
 
@@ -93,7 +97,11 @@ man.dispose();//fechar a tela da manutenção
             //definindo o conteúdo da tabela
             linha.add(objeto.getCodigo());
             linha.add(objeto.getInicio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            if(objeto.getFim() == null){
+            linha.add(null);}
+                else{
             linha.add(objeto.getFim().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                }
             linha.add(objeto.getObservacao());
             linha.add(objeto.getVaca());
             modelo.addRow(linha); //adicionando a linha na tabela
@@ -105,7 +113,8 @@ man.dispose();//fechar a tela da manutenção
         //Definindo os valores do campo na tela (um para cada atributo/campo)
         man.jtfCodigo.setText(objeto.getCodigo().toString());
         man.jtfInicio.setText(objeto.getInicio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        man.jtfFim.setText(objeto.getFim().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        if(objeto.getFim() != null){
+        man.jtfFim.setText(objeto.getFim().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));}
         man.jtfObservacao.setText(objeto.getObservacao());
         man.comVaca.setSelectedItem(objeto.getVaca());
         

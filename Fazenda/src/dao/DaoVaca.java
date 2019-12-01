@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.Vaca;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -25,8 +26,8 @@ public class DaoVaca {
             ps.setInt(2, objeto.getSituacao());
             ps.setDate(3, Date.valueOf(objeto.getNascimento()));
             ps.setString(4, objeto.getObservacao());
-            ps.setInt(5, objeto.getRacaVaca().getCodigo());
-            ps.setInt(6, objeto.getMaeVaca().getCodigo());
+            ps.setInt(5, objeto.getRacaVaca().getCodigo());  
+            ps.setInt(6, objeto.getMaeVaca().getCodigo());   
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {

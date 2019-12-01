@@ -130,5 +130,6 @@ man.dispose();//fechar a tela da manutenção
           public static void atualizaComboMae(ManutencaoVaca man) {
         DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(DaoVaca.consultar().toArray());
         man.comMae.setModel(defaultComboBoxModel);
+        man.comMae.addItem(null);
 }
 }

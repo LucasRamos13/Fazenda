@@ -31,7 +31,8 @@ public ListagemManejo listagem;
         
         jtfCodigo.setEnabled(false);  //desabilitando a edição do campo código
         btnAlterar.setEnabled(false); //desabilitando o botão alterar
-        btnExcluir.setEnabled(false); //desabilitando o botão excluir
+        btnExcluir.setEnabled(false);
+        tabelaVacas.setEnabled(false);//desabilitando o botão excluir
   }
    public ManutencaoManejo(java.awt.Frame parent, boolean modal, ListagemManejo listagem, int pk) {
         super(parent, modal);

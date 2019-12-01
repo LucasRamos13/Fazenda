@@ -126,11 +126,11 @@ public ListagemVaca listagem;
             }
         });
 
-        comOrigem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1" }));
+        comOrigem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Interna", "Externa" }));
 
         comMae.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        comSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2" }));
+        comSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal", "Vendida", "Falecida" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

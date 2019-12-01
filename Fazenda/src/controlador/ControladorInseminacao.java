@@ -28,7 +28,7 @@ public class ControladorInseminacao {
         public static void inserir(ManutencaoInseminacao man){
         Inseminacao objeto = new Inseminacao();
         objeto.setVaca((Vaca) man.comVaca.getSelectedItem());
-        objeto.setSituacao((Integer) man.comSituacao.getSelectedItem());
+        objeto.setSituacao(man.comSituacao.getSelectedIndex());
         objeto.setData(LocalDate.parse(man.jtfData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         objeto.setTouro((Touro)man.comTouro.getSelectedItem());
         objeto.setObservacao(man.jtfObservacao.getText());
@@ -50,7 +50,7 @@ man.dispose();//fechar a tela da manutenção
         //definir todos os atributos
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
     objeto.setVaca((Vaca) man.comVaca.getSelectedItem());
-        objeto.setSituacao((Integer) man.comSituacao.getSelectedItem());
+        objeto.setSituacao(man.comSituacao.getSelectedIndex());
         objeto.setData(LocalDate.parse(man.jtfData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         objeto.setTouro((Touro)man.comTouro.getSelectedItem());
         objeto.setObservacao(man.jtfObservacao.getText());
@@ -115,7 +115,7 @@ man.dispose();//fechar a tela da manutenção
         //man.jtfData.setText(objeto.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         man.comTouro.setSelectedItem(objeto.getTouro());
         man.comVaca.setSelectedItem(objeto.getVaca());
-        man.comSituacao.setSelectedItem(objeto.getSituacao());
+        man.comSituacao.setSelectedIndex(objeto.getSituacao());
         
         man.jtfCodigo.setEnabled(false);
         man.jtfPrevisao.setEnabled(false);//desabilitando o campo código

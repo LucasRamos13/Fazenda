@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.Lactacao;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -22,7 +23,11 @@ public class DaoLactacao {
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setDate(1, Date.valueOf(objeto.getInicio()));
+            if (objeto.getFim() == null){
+                ps.setNull(2, Types.DATE);
+            }else{
             ps.setDate(2, Date.valueOf(objeto.getFim()));
+            };
             ps.setString(3, objeto.getObservacao());
             ps.setInt(4, objeto.getVaca().getCodigo());
             ps.executeUpdate();
@@ -37,7 +42,11 @@ public class DaoLactacao {
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setDate(1, Date.valueOf(objeto.getInicio()));
+            if (objeto.getFim() == null){
+                ps.setNull(2, Types.DATE);
+            }else{
             ps.setDate(2, Date.valueOf(objeto.getFim()));
+            };
             ps.setString(3, objeto.getObservacao());
             ps.setInt(4, objeto.getVaca().getCodigo());
             ps.setInt(5, objeto.getCodigo());
@@ -74,7 +83,11 @@ public class DaoLactacao {
                 //definir um set para cada atributo da entidade, cuidado com o tipo
                 objeto.setCodigo(rs.getInt("codigo"));
                 objeto.setInicio(rs.getDate("inicio").toLocalDate());
-                objeto.setFim(rs.getDate("fim").toLocalDate());
+                if(rs.getDate("fim") != null){
+                objeto.setFim(rs.getDate("fim").toLocalDate());}
+                else{
+                objeto.setFim(null);
+                }
                 objeto.setObservacao(rs.getString("observacao"));
                 objeto.setVaca(DaoVaca.consultar(rs.getInt("cod_vaca")));
                 
@@ -100,7 +113,11 @@ public class DaoLactacao {
                 //definir um set para cada atributo da entidade, cuidado com o tipo
                 objeto.setCodigo(rs.getInt("codigo"));
                 objeto.setInicio(rs.getDate("inicio").toLocalDate());
-                objeto.setFim(rs.getDate("fim").toLocalDate());
+                if(rs.getDate("fim") != null){
+                objeto.setFim(rs.getDate("fim").toLocalDate());}
+                else{
+                objeto.setFim(null);
+                }
                 objeto.setObservacao(rs.getString("observacao"));
                 objeto.setVaca(DaoVaca.consultar(rs.getInt("cod_vaca")));
                 return objeto;//não mexa nesse, ele adiciona o objeto na lista

@@ -123,7 +123,7 @@ public ListagemInseminacao listagem;
 
         jLabel7.setText("Situação:");
 
-        comSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3" }));
+        comSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prenha", "Aborto", "Natimorto", "Nativivo" }));
 
         jLabel6.setText("Vaca:");
 
