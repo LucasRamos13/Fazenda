@@ -101,7 +101,7 @@ man.dispose();//fechar a tela da manutenção
         man.jtfNome.setText(objeto.getNome());
         man.jtfEmail.setText(objeto.getEmail());
         man.jtfUsuario.setText(objeto.getUsuario());
-        man.jtfSenha.setText(objeto.getSenha());
+        
         
         man.jtfCodigo.setEnabled(false); //desabilitando o campo código
         man.btnAdicionar.setEnabled(false); //desabilitando o botão adicionar

@@ -63,7 +63,7 @@ public class DaoPessoa {
     public static List<Pessoa> consultar() {
         List<Pessoa> resultados = new ArrayList<>();
         //editar o SQL conforme a entidade
-        String sql = "SELECT codigo, nome, email, usuario, senha FROM Pessoa";
+        String sql = "SELECT codigo, nome, email, usuario, MD5(senha) FROM Pessoa";
         PreparedStatement ps;
         try {
             ps = conexao.Conexao.getConexao().prepareStatement(sql);
@@ -75,7 +75,7 @@ public class DaoPessoa {
                 objeto.setNome(rs.getString("nome"));
                 objeto.setEmail(rs.getString("email"));
                 objeto.setUsuario(rs.getString("usuario"));
-                objeto.setSenha(rs.getString("senha"));
+                objeto.setSenha(rs.getString("MD5"));
                 resultados.add(objeto);//não mexa nesse, ele adiciona o objeto na lista
             }
             return resultados;
@@ -100,7 +100,7 @@ public class DaoPessoa {
                 objeto.setNome(rs.getString("nome"));
                 objeto.setEmail(rs.getString("email"));
                 objeto.setUsuario(rs.getString("usuario"));
-                objeto.setSenha(rs.getString("senha"));
+                
                 return objeto;//não mexa nesse, ele adiciona o objeto na lista
             }
         } catch (SQLException | ClassNotFoundException ex) {

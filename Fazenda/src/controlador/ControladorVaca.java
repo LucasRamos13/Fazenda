@@ -25,7 +25,7 @@ import modelo.Raca;
 public class ControladorVaca {
         public static void inserir(ManutencaoVaca man){
         Vaca objeto = new Vaca();
-    objeto.setOrigem(man.comOrigem.getSelectedIndex());
+        objeto.setOrigem(man.comOrigem.getSelectedIndex());
         objeto.setSituacao(man.comSituacao.getSelectedIndex());
         objeto.setNascimento(LocalDate.parse(man.jtfNascimento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         objeto.setRacaVaca((Raca)man.comRaca.getSelectedItem());
@@ -37,7 +37,8 @@ public class ControladorVaca {
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
             if (man.listagem != null) {
-     atualizarTabela(man.listagem.tabela); //atualizar a tabela da listagem
+     atualizarTabela(man.listagem.tabela);
+     //atualizar a tabela da listagem
 }
 man.dispose();//fechar a tela da manutenção
         } else {
