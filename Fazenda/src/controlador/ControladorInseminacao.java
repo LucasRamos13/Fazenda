@@ -7,8 +7,14 @@ package controlador;
 import dao.DaoInseminacao;
 import dao.DaoTouro;
 import dao.DaoVaca;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import modelo.Inseminacao;
 import tela.manutencao.ManutencaoInseminacao;
@@ -112,7 +118,14 @@ man.dispose();//fechar a tela da manutenção
         man.jtfCodigo.setText(objeto.getCodigo().toString());
         man.jtfObservacao.setText(objeto.getObservacao());
         man.jtfData.setText(objeto.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        //man.jtfData.setText(objeto.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        
+       
+        Date date =  java.sql.Date.valueOf(objeto.getData().plusMonths(9));
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");  
+        String strDate = dateFormat.format(date);  
+        
+        man.jtfPrevisao.setText(strDate);
+        
         man.comTouro.setSelectedItem(objeto.getTouro());
         man.comVaca.setSelectedItem(objeto.getVaca());
         man.comSituacao.setSelectedIndex(objeto.getSituacao());
