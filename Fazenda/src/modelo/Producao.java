@@ -16,7 +16,7 @@ public class Producao {
 private Integer codigo;
 private Integer turno;
 private LocalDate data;
-private Integer total;
+private Double total;
 private Pessoa pessoaVaca;
 private Vaca VacaProducao;
 private String observacao;
@@ -45,11 +45,11 @@ private String observacao;
         this.data = data;
     }
 
-    public Integer getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 

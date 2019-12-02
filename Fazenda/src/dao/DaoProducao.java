@@ -23,7 +23,7 @@ public class DaoProducao {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setInt(1, objeto.getTurno());
             ps.setDate(2, Date.valueOf(objeto.getData()));
-            ps.setInt(3, objeto.getTotal());
+            ps.setDouble(3, objeto.getTotal());
             ps.setString(4, objeto.getObservacao());
             ps.setInt(5, objeto.getPessoaVaca().getCodigo());
             ps.setInt(6, objeto.getVacaProducao().getCodigo());
@@ -40,7 +40,7 @@ public class DaoProducao {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setInt(1, objeto.getTurno());
             ps.setDate(2, Date.valueOf(objeto.getData()));
-            ps.setInt(3, objeto.getTotal());
+            ps.setDouble(3, objeto.getTotal());
             ps.setString(4, objeto.getObservacao());
             ps.setInt(5, objeto.getPessoaVaca().getCodigo());
             ps.setInt(6, objeto.getVacaProducao().getCodigo());
@@ -79,7 +79,7 @@ public class DaoProducao {
                 objeto.setCodigo(rs.getInt("codigo"));
                 objeto.setTurno(rs.getInt("turno"));
                 objeto.setData(rs.getDate("data").toLocalDate());
-                objeto.setTotal(rs.getInt("total"));
+                objeto.setTotal(rs.getDouble("total"));
                 objeto.setObservacao(rs.getString("obs"));
                 objeto.setPessoaVaca(DaoPessoa.consultar(rs.getInt("cod_pessoa")));
                 objeto.setVacaProducao(DaoVaca.consultar(rs.getInt("cod_vaca")));
@@ -107,7 +107,7 @@ public class DaoProducao {
                 objeto.setCodigo(rs.getInt("codigo"));
                 objeto.setTurno(rs.getInt("turno"));
                 objeto.setData(rs.getDate("data").toLocalDate());
-                objeto.setTotal(rs.getInt("total"));
+                objeto.setTotal(rs.getDouble("total"));
                 objeto.setObservacao(rs.getString("obs"));
                 objeto.setPessoaVaca(DaoPessoa.consultar(rs.getInt("cod_pessoa")));
                 objeto.setVacaProducao(DaoVaca.consultar(rs.getInt("cod_vaca")));

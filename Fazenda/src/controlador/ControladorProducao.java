@@ -29,7 +29,7 @@ public class ControladorProducao {
         Producao objeto = new Producao();
         objeto.setTurno(man.comTurno.getSelectedIndex());
         objeto.setData(LocalDate.parse(man.jtfData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        objeto.setTotal(Integer.parseInt(man.jtfTotal.getText()));
+        objeto.setTotal(Double.parseDouble(man.jtfTotal.getText()));
         objeto.setObservacao(man.jtfObservacao.getText());
         objeto.setVacaProducao((Vaca) man.comVaca.getSelectedItem());
         objeto.setPessoaVaca((Pessoa) man.comPessoa.getSelectedItem());
@@ -51,7 +51,7 @@ man.dispose();//fechar a tela da manutenção
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
         objeto.setTurno(man.comTurno.getSelectedIndex());
         objeto.setData(LocalDate.parse(man.jtfData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        objeto.setTotal(Integer.parseInt(man.jtfTotal.getText()));
+        objeto.setTotal(Double.parseDouble(man.jtfTotal.getText()));
         objeto.setObservacao(man.jtfObservacao.getText());
         objeto.setVacaProducao((Vaca) man.comVaca.getSelectedItem());
         objeto.setPessoaVaca((Pessoa) man.comPessoa.getSelectedItem());
