@@ -24,7 +24,11 @@ public class DaoVaca {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setInt(1, objeto.getOrigem());
             ps.setInt(2, objeto.getSituacao());
+            if (objeto.getNascimento() == null){
+                ps.setNull(3, Types.DATE);
+            }else{
             ps.setDate(3, Date.valueOf(objeto.getNascimento()));
+            };
             ps.setString(4, objeto.getObservacao());
             ps.setInt(5, objeto.getRacaVaca().getCodigo());
             if (objeto.getMaeVaca() == null){
@@ -45,7 +49,11 @@ public class DaoVaca {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setInt(1, objeto.getOrigem());
             ps.setInt(2, objeto.getSituacao());
+            if (objeto.getNascimento() == null){
+                ps.setNull(3, Types.DATE);
+            }else{
             ps.setDate(3, Date.valueOf(objeto.getNascimento()));
+            };
             ps.setString(4, objeto.getObservacao());
             ps.setInt(5, objeto.getRacaVaca().getCodigo());
             if (objeto.getMaeVaca() == null){
@@ -88,7 +96,11 @@ public class DaoVaca {
                 objeto.setCodigo(rs.getInt("brinco"));
                 objeto.setOrigem(rs.getInt("origem"));
                 objeto.setSituacao(rs.getInt("situacao"));
-                objeto.setNascimento(rs.getDate("nascimento").toLocalDate());
+                if(rs.getDate("nascimento") != null){
+                objeto.setNascimento(rs.getDate("nascimento").toLocalDate());}
+                else{
+                objeto.setNascimento(null);
+                }
                 objeto.setObservacao(rs.getString("observacao"));
                 objeto.setRacaVaca(DaoRaca.consultar(rs.getInt("cod_raca")));
                 objeto.setMaeVaca(DaoVaca.consultar(rs.getInt("brinco_mae")));
@@ -116,7 +128,11 @@ public class DaoVaca {
                 objeto.setCodigo(rs.getInt("brinco"));
                 objeto.setOrigem(rs.getInt("origem"));
                 objeto.setSituacao(rs.getInt("situacao"));
-                objeto.setNascimento(rs.getDate("nascimento").toLocalDate());
+                if(rs.getDate("nascimento") != null){
+                objeto.setNascimento(rs.getDate("nascimento").toLocalDate());}
+                else{
+                objeto.setNascimento(null);
+                }
                 objeto.setObservacao(rs.getString("observacao"));
                 objeto.setRacaVaca(DaoRaca.consultar(rs.getInt("cod_raca")));
                 objeto.setMaeVaca(DaoVaca.consultar(rs.getInt("brinco_mae")));

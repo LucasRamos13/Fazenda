@@ -26,7 +26,7 @@ public class ControladorLactacao {
         public static void inserir(ManutencaoLactacao man){
         Lactacao objeto = new Lactacao();
         objeto.setInicio(LocalDate.parse(man.jtfInicio.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        if(man.jtfFim.getText() == ""){
+        if(man.jtfFim.getText() != ""){
         objeto.setFim(LocalDate.parse(man.jtfFim.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }
         objeto.setVaca((Vaca) man.comVaca.getSelectedItem());
@@ -49,7 +49,7 @@ man.dispose();//fechar a tela da manutenção
         //definir todos os atributos
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
         objeto.setInicio(LocalDate.parse(man.jtfInicio.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        if(man.jtfFim.getText() == ""){
+        if(man.jtfFim.getText() != ""){
         objeto.setFim(LocalDate.parse(man.jtfFim.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }
         objeto.setVaca((Vaca) man.comVaca.getSelectedItem());

@@ -27,7 +27,9 @@ public class ControladorVaca {
         Vaca objeto = new Vaca();
         objeto.setOrigem(man.comOrigem.getSelectedIndex());
         objeto.setSituacao(man.comSituacao.getSelectedIndex());
+        if(!"".equals(man.jtfNascimento.getText())){
         objeto.setNascimento(LocalDate.parse(man.jtfNascimento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        }
         objeto.setRacaVaca((Raca)man.comRaca.getSelectedItem());
         objeto.setObservacao(man.jtfObservacao.getText());
         objeto.setMaeVaca((Vaca)man.comMae.getSelectedItem());
@@ -51,7 +53,9 @@ man.dispose();//fechar a tela da manutenção
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
     objeto.setOrigem(man.comOrigem.getSelectedIndex());
         objeto.setSituacao(man.comSituacao.getSelectedIndex());
+        if(man.jtfNascimento.getText() != null){
         objeto.setNascimento(LocalDate.parse(man.jtfNascimento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        }
         objeto.setRacaVaca((Raca)man.comRaca.getSelectedItem());
         objeto.setObservacao(man.jtfObservacao.getText());
         objeto.setMaeVaca((Vaca)man.comMae.getSelectedItem());
@@ -111,7 +115,11 @@ man.dispose();//fechar a tela da manutenção
         }else{
         linha.add("Falecida");
             }
+            if(objeto.getNascimento() == null){
+            linha.add(null);}
+                else{
             linha.add(objeto.getNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                }
             linha.add(objeto.getRacaVaca());
             linha.add(objeto.getObservacao());
             linha.add(objeto.getMaeVaca());
@@ -124,7 +132,8 @@ man.dispose();//fechar a tela da manutenção
         //Definindo os valores do campo na tela (um para cada atributo/campo)
         man.jtfCodigo.setText(objeto.getCodigo().toString());
         man.jtfObservacao.setText(objeto.getObservacao());
-        man.jtfNascimento.setText(objeto.getNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        if(objeto.getNascimento() != null){
+        man.jtfNascimento.setText(objeto.getNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));}
         man.comRaca.setSelectedItem(objeto.getRacaVaca());
         man.comMae.setSelectedItem(objeto.getMaeVaca());
         man.comOrigem.setSelectedItem(objeto.getOrigem());
