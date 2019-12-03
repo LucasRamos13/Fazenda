@@ -99,8 +99,18 @@ man.dispose();//fechar a tela da manutenção
             
             //definindo o conteúdo da tabela
             linha.add(objeto.getCodigo());
-            linha.add(objeto.getOrigem());
-            linha.add(objeto.getSituacao());
+            if(objeto.getOrigem() == 0){
+        linha.add("Interna");}
+        else{
+        linha.add("Externa");
+        }
+            if(objeto.getSituacao() == 0){
+        linha.add("Normal");}
+            else if(objeto.getSituacao() == 1){
+        linha.add("Vendida");
+        }else{
+        linha.add("Falecida");
+            }
             linha.add(objeto.getNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             linha.add(objeto.getRacaVaca());
             linha.add(objeto.getObservacao());

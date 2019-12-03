@@ -104,7 +104,15 @@ man.dispose();//fechar a tela da manutenção
             //definindo o conteúdo da tabela
             linha.add(objeto.getCodigo());
             linha.add(objeto.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-            linha.add(objeto.getSituacao());
+            if(objeto.getSituacao() == 0){
+        linha.add("Prenha");}
+            else if(objeto.getSituacao() == 1){
+        linha.add("Aborto");
+        }else if(objeto.getSituacao() == 2){
+        linha.add("Natimorto");
+            }else{
+            linha.add("Nativivo");
+        }
             linha.add(objeto.getVaca());
             linha.add(objeto.getTouro());
             linha.add(objeto.getObservacao());
